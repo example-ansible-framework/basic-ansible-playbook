@@ -1,3 +1,4 @@
+
 - name: Stop and remove existing CouchDB container
   docker_container:
     name: demo-couchdb
@@ -11,8 +12,8 @@
     state: started
     recreate: yes
     env:
-      COUCHDB_USER: admin
-      COUCHDB_PASSWORD: wza7626222
+      COUCHDB_USER: "{{db_user}}"
+      COUCHDB_PASSWORD: "{{db_password}}"
     published_ports:
       - "5984:5984"
     networks:

@@ -1,0 +1,7 @@
+root_path: /home/ubuntu
+react_path: /basic-react-app
+django_path: /basic-django-app
+docker_username: lewiswang9911
+docker_password: wza7626222
+db_user: admin
+db_password: wza7626222

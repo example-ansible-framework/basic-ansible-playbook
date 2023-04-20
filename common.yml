@@ -1,7 +1,15 @@
+- name: Start docker service
+  ansible.builtin.systemd:
+    state: restarted
+    daemon_reload: true
+    name: docker
+
+- name: Log into DockerHub
+  community.docker.docker_login:
+    username: "{{docker_username}}"
+    password: "{{docker_password}}"
+
 - name: Create Network for CouchDB and Django Project
-  docker_network:
+  community.docker.docker_network:
     name: demo-network
     state: present
-- name: Show build output
-  debug:
-    var: image_output

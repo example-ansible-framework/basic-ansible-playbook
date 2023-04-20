@@ -1,0 +1,2 @@
+[aws-server]
+aws.kittendrinkscoffee.shop ansible_user=ubuntu ansible_verbosity=2

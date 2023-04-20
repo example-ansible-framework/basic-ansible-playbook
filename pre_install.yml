@@ -1,0 +1,29 @@
+# - name: Fix apt directory ownership and permissions
+#   file:
+#     path: /var/lib/apt/lists/
+#     owner: root
+#     group: root
+#     mode: '0755'
+- name: Update apt cache
+  apt:
+    update_cache: yes
+- name: Install Git
+  apt:
+    name: 
+      - git
+      - docker.io
+      - nodejs
+    state: present
+- name: git clone https://github.com/example-ansible-framework/basic-react-app.git
+  git:
+    repo: https://github.com/example-ansible-framework/basic-react-app.git
+    dest: "{{root_path}}{{react_path}}"
+    single_branch: yes
+    version: main
+
+- name: git clone https://github.com/example-ansible-framework/basic-django-app.git
+  git:
+    repo: https://github.com/example-ansible-framework/basic-django-app.git
+    dest: "{{root_path}}{{django_path}}"
+    single_branch: yes
+    version: main
