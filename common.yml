@@ -1,0 +1,7 @@
+- name: Create Network for CouchDB and Django Project
+  docker_network:
+    name: demo-network
+    state: present
+- name: Show build output
+  debug:
+    var: image_output

@@ -1,0 +1,37 @@
+- name: Stop and remove existing React app container
+  docker_container:
+    name: react-app
+    state: absent
+    force_kill: yes
+- name: Remove existing React app image
+  docker_image:
+    name: app1
+    state: absent
+- name: Remove existing node
+  docker_image:
+    name: node
+    state: absent
+- name: Remove existing nginx
+  docker_image:
+    name: nginx
+    state: absent
+    
+  
+- name: Build new React app image
+  docker_image:
+    name: app1
+    build:
+      path: /Users/lewisan/comp90024/app1
+      dockerfile: /Users/lewisan/comp90024/app1/Dockerfile
+    source: build
+- name: Run React app container
+  docker_container:
+    name: react-app
+    image: app1:latest
+    state: started
+    recreate: yes
+    pull: false
+    published_ports:
+      - "3000:80"
+    networks:
+      - name: demo-network

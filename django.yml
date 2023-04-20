@@ -1,0 +1,28 @@
+- name: Stop and remove existing Django container
+  docker_container: 
+    name: couchpydemo
+    state: absent
+    force_kill: yes
+- name: Remove existing docker image
+  docker_image:
+    name: couchpy:latest
+    state: absent
+- name: Build new Django docker image
+  docker_image:
+    name: couchpy:latest
+    build:
+      path: /Users/lewisan/comp90024/couch_demo_backend
+      dockerfile: /Users/lewisan/comp90024/couch_demo_backend/Dockerfile
+    source: build
+- name: Run Django docker container
+  docker_container:
+    name: couchpydemo
+    image: couchpy:latest
+    state: started
+    recreate: yes
+    pull: false
+    published_ports:
+      - "8000:8000"
+    networks: 
+      - name: demo-network
+    

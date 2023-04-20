@@ -1,0 +1,17 @@
+- name: Deploy Django Project and CouchDB containers
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: network
+      include_tasks:
+        file: common.yml
+    - name: couchdb
+      include_tasks:
+        file: couchdb.yml
+    - name: django
+      include_tasks:
+        file: django.yml
+    - name: react
+      include_tasks:
+        file: react.yml
